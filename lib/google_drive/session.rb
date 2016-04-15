@@ -132,14 +132,14 @@ module GoogleDrive
         # Proc or Method called when authentication has failed.
         # When this function returns +true+, it tries again.
         def on_auth_fail
-          warn(
-              "WARNING: GoogleDrive::Session\#on_auth_fail is deprecated and will be removed in the next version.")
+          # warn(
+          #     "WARNING: GoogleDrive::Session\#on_auth_fail is deprecated and will be removed in the next version.")
           return @on_auth_fail
         end
 
         def on_auth_fail=(func)
-          warn(
-              "WARNING: GoogleDrive::Session\#on_auth_fail is deprecated and will be removed in the next version.")
+          # warn(
+          #     "WARNING: GoogleDrive::Session\#on_auth_fail is deprecated and will be removed in the next version.")
           @on_auth_fail = func
         end
 
@@ -464,6 +464,7 @@ module GoogleDrive
           response_type = params[:response_type] || :xml
 
           while true
+            # puts "DEBUGjpelly: making request; @fetcher: #{@fetcher.inspect}; auth: #{auth.inspect}"
             response = @fetcher.request_raw(method, url, data, extra_header, auth)
             if response.code == "401" && @on_auth_fail && @on_auth_fail.call()
               next
